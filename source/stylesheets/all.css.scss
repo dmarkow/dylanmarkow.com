@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+$font-size-base: 16px;
+$font-family-sans-serif: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-monospace: "Source Code Pro", "Inconsolata", Monaco, Menlo, Consolas, "Courier New", monospace;
+
+@import "bootstrap";
+@import "font-awesome";
+
+/*code,*/
+code, pre.highlight {
+    font-family: "Source Code Pro", "Inconsolata", monospace;
+    /*background-color: whitesmoke;*/
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+pre.highlight {
+  margin: 18px 0;
+}
+
+body {
+  padding-top: 30px;
+}

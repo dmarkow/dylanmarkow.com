@@ -1,0 +1,13 @@
+<% wrap_layout :layout do %>
+  <h2>
+    <%= link_to current_page.title, current_page.url %>
+    <span>
+      <%= current_page.date.strftime('%b %e') %>
+    </span>
+  </h2>
+
+  <article>
+    <%= yield %>
+  </article>
+  <%= disqus %>
+<% end %>
