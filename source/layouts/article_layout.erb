@@ -4,6 +4,10 @@
     <span>
       <%= current_page.date.strftime('%b %e') %>
     </span>
+    <% if current_page.date.year < Date.today.year %>
+      <span class='text-muted'><%= current_page.date.year %></span>
+    <% end %>
+
   </h2>
 
   <article>
