@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Blog Name</title>
+  <subtitle>Blog subtitle</subtitle>
+  <id>http://blog.url.com/</id>
+  <link href="http://blog.url.com/"/>
+  <link href="http://blog.url.com/feed.xml" rel="self"/>
+  <updated>2013-12-30T21:15:00Z</updated>
+  <author>
+    <name>Blog Author</name>
+  </author>
+  <entry>
+    <title>jQuery Mobile Rails 1.4.0 Released</title>
+    <link rel="alternate" href="/blog/2013/12/30/jquery-mobile-rails-1-4-0-released/"/>
+    <id>/blog/2013/12/30/jquery-mobile-rails-1-4-0-released/</id>
+    <published>2013-12-30T21:15:00Z</published>
+    <updated>2013-12-30T21:15:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;jQuery Mobile 1.4.0 has been released, so the &lt;a href="https://rubygems.org/gems/jquery_mobile_rails/"&gt;jquery_mobile_rails gem&lt;/a&gt; has been updated as well!&lt;/p&gt;
+
+&lt;p&gt;You can read about the changes on the &lt;a href="http://blog.jquerymobile.com/2013/12/23/jquery-mobile-1-4-0-released/"&gt;jQuery Mobile blog&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>jQuery Mobile Rails 1.4.0.beta.1 Released</title>
+    <link rel="alternate" href="/blog/2013/09/26/jquery-mobile-rails-1-4-0-beta-1-released/"/>
+    <id>/blog/2013/09/26/jquery-mobile-rails-1-4-0-beta-1-released/</id>
+    <published>2013-09-26T01:47:00Z</published>
+    <updated>2013-09-26T01:47:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;I&amp;#39;ve been helping out with maintenance of the &lt;a href="https://github.com/tscolari/jquery-mobile-rails"&gt;jquery_mobile_rails gem&lt;/a&gt;
+and am excited to announce the first &lt;a href="https://rubygems.org/gems/jquery_mobile_rails/versions/1.4.0.beta.1"&gt;beta for the upcoming 1.4.0 release&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can read about the changes on the &lt;a href="http://jquerymobile.com/blog/2013/09/24/announcing-jquery-mobile-1-4-beta/"&gt;jQuery Mobile blog&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Speeding up Rails 4 in Development Mode</title>
+    <link rel="alternate" href="/blog/2013/09/12/speeding-up-rails-4-in-development-mode/"/>
+    <id>/blog/2013/09/12/speeding-up-rails-4-in-development-mode/</id>
+    <published>2013-09-12T17:00:00Z</published>
+    <updated>2013-09-12T17:00:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;As I&amp;#39;ve been adding more and more CSS/JS files to my Rails app, I&amp;#39;ve been
+noticing a huge slowdown in page load times. Most of the assets are tiny
+controller-specific files, but the size of those files is irrelevant.&lt;/p&gt;
+
+&lt;p&gt;By default, Rails 4.0 turns on &amp;quot;debug mode&amp;quot; for your assets. As a result, every
+single page load sends a separate request for each asset. Even though most of
+these return a 304 Not Modified header, it still slows things down by having to
+send/receive a couple hundred requests.&lt;/p&gt;
+
+&lt;p&gt;Simply disabling asset debugging in &lt;code&gt;config/development.rb&lt;/code&gt; drastically
+improved the page load time in the browser:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="c1"&gt;# Debug mode disables concatenation and preprocessing of assets.&lt;/span&gt;
+&lt;span class="c1"&gt;# This option may cause significant delays in view rendering with a large&lt;/span&gt;
+&lt;span class="c1"&gt;# number of complex assets.&lt;/span&gt;
+&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="nf"&gt;.assets.debug&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;false&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;Note that this is different from production mode; Rails still
+recognizes when you change your assets and will automatically reload them
+without needing to restart the server. The primary change is that the
+CSS/JS is concatenated into single files.&lt;/p&gt;
+
+&lt;p&gt;Before the change, Chrome took around 1.8 seconds to fully load a page. After
+the change, 450ms. Development mode feels &lt;strong&gt;much&lt;/strong&gt; snappier now!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Load Order with RubyMotion</title>
+    <link rel="alternate" href="/blog/2012/05/06/load-order-with-rubymotion/"/>
+    <id>/blog/2012/05/06/load-order-with-rubymotion/</id>
+    <published>2012-05-06T16:44:00Z</published>
+    <updated>2012-05-06T16:44:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Because of the way &lt;a href="http://www.rubymotion.com"&gt;RubyMotion&lt;/a&gt; compiles your application, you may run into dependency issues between your ruby files. By default, RubyMotion uses a simple &lt;code&gt;Dir.glob&lt;/code&gt; command to load your files:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="no"&gt;Dir&lt;/span&gt;&lt;span class="nf"&gt;.glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="nf"&gt;.join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="nf"&gt;.project_dir&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;app/**/*.rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;Suppose you create a custom module under &lt;code&gt;app/lib/foo.rb&lt;/code&gt; with some convenience methods:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;Foo&lt;/span&gt;
+  &lt;span class="k"&gt;def &lt;/span&gt;&lt;span class="nc"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;bar&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;bar&amp;quot;&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;And then you include it in your &lt;code&gt;AppDelegate&lt;/code&gt; class:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;div class="lineno"&gt;8&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="k"&gt;class &lt;/span&gt;&lt;span class="nc"&gt;AppDelegate&lt;/span&gt;
+  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="no"&gt;Foo&lt;/span&gt;
+
+  &lt;span class="k"&gt;def &lt;/span&gt;&lt;span class="nf"&gt;application&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;application&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;didFinishLaunchingWithOptions&lt;/span&gt;&lt;span class="ss"&gt;:launchOptions&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="vi"&gt;@bar&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;self&lt;/span&gt;&lt;span class="nf"&gt;.bar&lt;/span&gt;
+    &lt;span class="kp"&gt;true&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;When you run &lt;code&gt;rake&lt;/code&gt;, you may run into this:&lt;/p&gt;
+&lt;pre class="highlight text"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;(main)&amp;gt;&amp;gt; 2012-05-06 16:58:49.270 app[88253:f803] *** Terminating app due to uncaught exception &amp;#39;NameError&amp;#39;, reason: &amp;#39;uninitialized constant AppDelegate::Foo (NameError)
+&amp;#39;
+*** First throw call stack:
+(0x156a022 0x1b0cd6 0xd1c34 0x2377 0x2225)
+terminate called throwing an exception
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;The basic solution, which &lt;a href="http://www.rubymotion.com/developer-center/guides/project-management/#_files_dependencies"&gt;RubyMotion&amp;#39;s documentation suggests&lt;/a&gt;, is to use the &lt;code&gt;app.files_dependencies&lt;/code&gt; option in your &lt;code&gt;Rakefile&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="no"&gt;Motion&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Project&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;App&lt;/span&gt;&lt;span class="nf"&gt;.setup&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+  &lt;span class="c1"&gt;# Use `rake config&amp;#39; to see complete project settings.&lt;/span&gt;
+  &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="nf"&gt;.name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;app&amp;#39;&lt;/span&gt;
+  &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="nf"&gt;.files_dependencies&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;app/app_delegate.rb&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;app/lib/foo.rb&amp;#39;&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;However, if you are building a large app, and want &lt;code&gt;Foo&lt;/code&gt; to be available to all your classes, you probably don&amp;#39;t want to have dozens of &lt;code&gt;&amp;#39;app/baz.rb&amp;#39; =&amp;gt; &amp;#39;app/lib/foo.rb&amp;#39;&lt;/code&gt; entries. In my project, I&amp;#39;m just altering the array of files from &lt;code&gt;Dir.glob&lt;/code&gt; instead, ensuring my modules get loaded first:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="nf"&gt;.files&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Dir&lt;/span&gt;&lt;span class="nf"&gt;.glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="nf"&gt;.join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="nf"&gt;.project_dir&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;app/lib/**/*.rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+            &lt;span class="no"&gt;Dir&lt;/span&gt;&lt;span class="nf"&gt;.glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="nf"&gt;.join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="nf"&gt;.project_dir&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;app/**/*.rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;</content>
+  </entry>
+</feed>

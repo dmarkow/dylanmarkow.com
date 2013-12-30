@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>Load Order with RubyMotion</title>
+  <link href="//fonts.googleapis.com/css?family=Roboto:400,700" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/all.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/syntax.css" media="screen" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+</head>
+
+<body class="blog blog_2012 blog_2012_05 blog_2012_05_06 blog_2012_05_06_load-order-with-rubymotion blog_2012_05_06_load-order-with-rubymotion_index">
+  <div class="container">
+    <header class="">
+      <h1><a href="/">Dylan Markow</a></h1>
+      <hr>
+    </header>
+
+    <div class="row">
+      <div class="col-md-9">
+        <div id="main" role="main">
+            <h2>
+    <a href="/blog/2012/05/06/load-order-with-rubymotion/">Load Order with RubyMotion</a>
+    <span>
+      May  6
+    </span>
+    
+      <span class='text-muted'>2012</span>
+    
+
+  </h2>
+
+  <article>
+    <p>Because of the way <a href="http://www.rubymotion.com">RubyMotion</a> compiles your application, you may run into dependency issues between your ruby files. By default, RubyMotion uses a simple <code>Dir.glob</code> command to load your files:</p>
+<pre class="highlight ruby"><table><tbody><tr><td class="gutter gl"><div class="lineno">1</div></td><td class="code"><span class="no">Dir</span><span class="nf">.glob</span><span class="p">(</span><span class="no">File</span><span class="nf">.join</span><span class="p">(</span><span class="n">app</span><span class="nf">.project_dir</span><span class="p">,</span> <span class="s1">&#39;app/**/*.rb&#39;</span><span class="p">))</span>
+</td></tr></tbody></table></pre>
+<p>Suppose you create a custom module under <code>app/lib/foo.rb</code> with some convenience methods:</p>
+<pre class="highlight ruby"><table><tbody><tr><td class="gutter gl"><div class="lineno">1</div><div class="lineno">2</div><div class="lineno">3</div><div class="lineno">4</div><div class="lineno">5</div></td><td class="code"><span class="k">module</span> <span class="nn">Foo</span>
+  <span class="k">def </span><span class="nc">self</span><span class="o">.</span><span class="nf">bar</span>
+    <span class="s2">&quot;bar&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</td></tr></tbody></table></pre>
+<p>And then you include it in your <code>AppDelegate</code> class:</p>
+<pre class="highlight ruby"><table><tbody><tr><td class="gutter gl"><div class="lineno">1</div><div class="lineno">2</div><div class="lineno">3</div><div class="lineno">4</div><div class="lineno">5</div><div class="lineno">6</div><div class="lineno">7</div><div class="lineno">8</div></td><td class="code"><span class="k">class </span><span class="nc">AppDelegate</span>
+  <span class="kp">include</span> <span class="no">Foo</span>
+
+  <span class="k">def </span><span class="nf">application</span><span class="p">(</span><span class="n">application</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span><span class="ss">:launchOptions</span><span class="p">)</span>
+    <span class="vi">@bar</span> <span class="o">=</span> <span class="nb">self</span><span class="nf">.bar</span>
+    <span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</td></tr></tbody></table></pre>
+<p>When you run <code>rake</code>, you may run into this:</p>
+<pre class="highlight text"><table><tbody><tr><td class="gutter gl"><div class="lineno">1</div><div class="lineno">2</div><div class="lineno">3</div><div class="lineno">4</div><div class="lineno">5</div></td><td class="code">(main)&gt;&gt; 2012-05-06 16:58:49.270 app[88253:f803] *** Terminating app due to uncaught exception &#39;NameError&#39;, reason: &#39;uninitialized constant AppDelegate::Foo (NameError)
+&#39;
+*** First throw call stack:
+(0x156a022 0x1b0cd6 0xd1c34 0x2377 0x2225)
+terminate called throwing an exception
+</td></tr></tbody></table></pre>
+<p>The basic solution, which <a href="http://www.rubymotion.com/developer-center/guides/project-management/#_files_dependencies">RubyMotion&#39;s documentation suggests</a>, is to use the <code>app.files_dependencies</code> option in your <code>Rakefile</code>:</p>
+<pre class="highlight ruby"><table><tbody><tr><td class="gutter gl"><div class="lineno">1</div><div class="lineno">2</div><div class="lineno">3</div><div class="lineno">4</div><div class="lineno">5</div></td><td class="code"><span class="no">Motion</span><span class="o">::</span><span class="no">Project</span><span class="o">::</span><span class="no">App</span><span class="nf">.setup</span> <span class="k">do</span> <span class="o">|</span><span class="n">app</span><span class="o">|</span>
+  <span class="c1"># Use `rake config&#39; to see complete project settings.</span>
+  <span class="n">app</span><span class="nf">.name</span> <span class="o">=</span> <span class="s1">&#39;app&#39;</span>
+  <span class="n">app</span><span class="nf">.files_dependencies</span> <span class="s1">&#39;app/app_delegate.rb&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;app/lib/foo.rb&#39;</span>
+<span class="k">end</span>
+</td></tr></tbody></table></pre>
+<p>However, if you are building a large app, and want <code>Foo</code> to be available to all your classes, you probably don&#39;t want to have dozens of <code>&#39;app/baz.rb&#39; =&gt; &#39;app/lib/foo.rb&#39;</code> entries. In my project, I&#39;m just altering the array of files from <code>Dir.glob</code> instead, ensuring my modules get loaded first:</p>
+<pre class="highlight ruby"><table><tbody><tr><td class="gutter gl"><div class="lineno">1</div><div class="lineno">2</div></td><td class="code"><span class="n">app</span><span class="nf">.files</span> <span class="o">=</span> <span class="no">Dir</span><span class="nf">.glob</span><span class="p">(</span><span class="no">File</span><span class="nf">.join</span><span class="p">(</span><span class="n">app</span><span class="nf">.project_dir</span><span class="p">,</span> <span class="s1">&#39;app/lib/**/*.rb&#39;</span><span class="p">))</span> <span class="o">|</span>
+            <span class="no">Dir</span><span class="nf">.glob</span><span class="p">(</span><span class="no">File</span><span class="nf">.join</span><span class="p">(</span><span class="n">app</span><span class="nf">.project_dir</span><span class="p">,</span> <span class="s1">&#39;app/**/*.rb&#39;</span><span class="p">))</span>
+</td></tr></tbody></table></pre>
+  </article>
+  <hr>
+  <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            //<![CDATA[
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//dylanmarkow.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            //]]>
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </script>
+
+        </div>
+      </div>
+
+      <aside class="col-md-3">
+
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">Find me on...</h3>
+          </div>
+
+          <div class="list-group">
+            <a class="list-group-item" href="http://github.com/dmarkow"><i class="icon-github icon-large icon-fixed-width"></i> GitHub</a>
+            <a class="list-group-item" href="http://twitter.com/dmarkow"><i class="icon-twitter icon-large icon-fixed-width"></i> Twitter</a>
+            <a class="list-group-item" href="http://stackoverflow.com/users/424300/dylan-markow"><i class="icon-stackexchange icon-large icon-fixed-width"></i> Stack Overflow</a>
+            <a class="list-group-item" href="http://www.linkedin.com/in/dylanmarkow"><i class="icon-linkedin icon-large icon-fixed-width"></i> LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h2 class="panel-title">Recent Articles</h2>
+          </div>
+          <div class="list-group">
+            
+              <a class="list-group-item" href="/blog/2013/12/30/jquery-mobile-rails-1-4-0-released/">jQuery Mobile Rails 1.4.0 Released</a>
+            
+              <a class="list-group-item" href="/blog/2013/09/26/jquery-mobile-rails-1-4-0-beta-1-released/">jQuery Mobile Rails 1.4.0.beta.1 Released</a>
+            
+              <a class="list-group-item" href="/blog/2013/09/12/speeding-up-rails-4-in-development-mode/">Speeding up Rails 4 in Development Mode</a>
+            
+              <a class="list-group-item" href="/blog/2012/05/06/load-order-with-rubymotion/">Load Order with RubyMotion</a>
+            
+          </div>
+        </div>
+
+
+
+        <!-- <h2>Tags</h2>
+        <ol>
+          
+          <li><a href="/blog/tags/rails/">rails</a> (3)</a></li>
+          
+        </ol>
+ -->
+<!--         <h2>By Year</h2>
+        <ol>
+          
+          <li><a href="/blog/2013/">2013</a> (3)</a></li>
+          
+          <li><a href="/blog/2012/">2012</a> (1)</a></li>
+          
+        </ol> -->
+      </aside>
+    </div>
+  </div>
+</body>
+</html>
