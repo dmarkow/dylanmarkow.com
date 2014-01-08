@@ -5,10 +5,89 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2013-12-30T21:15:00Z</updated>
+  <updated>2014-01-08T22:50:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Capistrano 3: Setting a Default Stage</title>
+    <link rel="alternate" href="/blog/2014/01/08/capistrano-3-setting-a-default-stage/"/>
+    <id>/blog/2014/01/08/capistrano-3-setting-a-default-stage/</id>
+    <published>2014-01-08T22:50:00Z</published>
+    <updated>2014-01-08T22:50:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;In Capistrano v2, multi-stage support wasn&amp;#39;t built in. If you didn&amp;#39;t need stages, you could just happily
+use &lt;code&gt;cap deploy&lt;/code&gt; without any problem.&lt;/p&gt;
+
+&lt;p&gt;Capistrano v3 is a complete rewrite from v2, and with it comes built-in multi-stage support, even if you don&amp;#39;t want it.
+So even if you have just a single stage, let&amp;#39;s say &lt;code&gt;production&lt;/code&gt;, you still have to reference the stage every single time
+you run your Capistrano tasks:&lt;/p&gt;
+&lt;pre class="highlight text"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;cap production deploy
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;If you try &lt;code&gt;cap deploy&lt;/code&gt; without a stage, you will be told:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Stage not set, please call something such as &lt;code&gt;cap production deploy&lt;/code&gt;, where production is a stage you have defined.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;If you used something like the multistage extension in v2, you would expect to be able to add &lt;code&gt;set :default_stage, &amp;quot;production&amp;quot;&lt;/code&gt;
+to your configuration. You will quickly find that this has no effect in v3, and if you try to run your tasks without specifying
+a stage, you&amp;#39;ll get the same error. The &lt;a href="https://github.com/capistrano/capistrano/issues/806"&gt;issue has been brought up&lt;/a&gt;
+but apparently having a single stage isn&amp;#39;t a &amp;quot;use case.&amp;quot; I disagree, so let&amp;#39;s make it work.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Time to dig into Capistrano a little. Instead of using its own DSL, Capistrano is now a Rake application.
+So what&amp;#39;s really happening is that Capistrano is expecting a separate task for your stage to be run
+&lt;strong&gt;before&lt;/strong&gt; the &lt;code&gt;deploy&lt;/code&gt; task. In fact, the &lt;code&gt;deploy.rb&lt;/code&gt; file isn&amp;#39;t even loaded when you run &lt;code&gt;cap deploy&lt;/code&gt;
+without a stage.&lt;/p&gt;
+
+&lt;p&gt;When we look at Capistrano&amp;#39;s &lt;code&gt;lib/capistrano/setup.rb&lt;/code&gt; file, we find that the stage tasks do a couple things.
+For each stage (the list of stages is created from the files in the &lt;code&gt;config/deploy/&lt;/code&gt; directory), a Rake task is defined to:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Set the &lt;code&gt;:stage&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Load the capistrano defaults&lt;/li&gt;
+&lt;li&gt;Load the &lt;code&gt;deploy.rb&lt;/code&gt; file&lt;/li&gt;
+&lt;li&gt;Load the &lt;code&gt;deploy/#{stage}.rb&lt;/code&gt; file&lt;/li&gt;
+&lt;li&gt;Do a couple other things like setting SCM and locales&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="highlight ruby"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;div class="lineno"&gt;8&lt;/div&gt;&lt;div class="lineno"&gt;9&lt;/div&gt;&lt;div class="lineno"&gt;10&lt;/div&gt;&lt;div class="lineno"&gt;11&lt;/div&gt;&lt;div class="lineno"&gt;12&lt;/div&gt;&lt;div class="lineno"&gt;13&lt;/div&gt;&lt;div class="lineno"&gt;14&lt;/div&gt;&lt;div class="lineno"&gt;15&lt;/div&gt;&lt;div class="lineno"&gt;16&lt;/div&gt;&lt;div class="lineno"&gt;17&lt;/div&gt;&lt;div class="lineno"&gt;18&lt;/div&gt;&lt;div class="lineno"&gt;19&lt;/div&gt;&lt;div class="lineno"&gt;20&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="c1"&gt;# lib/capistrano/setup.rb&lt;/span&gt;
+
+&lt;span class="n"&gt;namespace&lt;/span&gt; &lt;span class="ss"&gt;:load&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="n"&gt;task&lt;/span&gt; &lt;span class="ss"&gt;:defaults&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+    &lt;span class="nb"&gt;load&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;capistrano/defaults.rb&amp;#39;&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="n"&gt;stages&lt;/span&gt;&lt;span class="nf"&gt;.each&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+  &lt;span class="no"&gt;Rake&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Task&lt;/span&gt;&lt;span class="nf"&gt;.define_task&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+    &lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:stage&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="nf"&gt;.to_sym&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;invoke&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;load:defaults&amp;#39;&lt;/span&gt;
+    &lt;span class="nb"&gt;load&lt;/span&gt; &lt;span class="n"&gt;deploy_config_path&lt;/span&gt;
+    &lt;span class="nb"&gt;load&lt;/span&gt; &lt;span class="n"&gt;stage_config_path&lt;/span&gt;&lt;span class="nf"&gt;.join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;stage&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.rb&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;load&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;capistrano/&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;fetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:scm&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.rb&amp;quot;&lt;/span&gt;
+    &lt;span class="no"&gt;I18n&lt;/span&gt;&lt;span class="nf"&gt;.locale&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:locale&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:en&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;configure_backend&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;Now that we know this, we need to approach it a little differently. Rather than thinking &lt;em&gt;How do I set a default stage&lt;/em&gt;,
+we should be asking &lt;em&gt;How do I make sure that my production stage&amp;#39;s task is run every time&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Because this is just Rake, we already know the answer: simply invoke the &lt;code&gt;production&lt;/code&gt; task by default.
+Normally you would do this from your &lt;code&gt;Rakefile&lt;/code&gt;, but since we&amp;#39;re using Capistrano, you&amp;#39;ll add this to the end of your &lt;code&gt;Capfile&lt;/code&gt; instead:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="no"&gt;Rake&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Task&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:production&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="nf"&gt;.invoke&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;We can even use the &lt;code&gt;invoke&lt;/code&gt; method from Capistrano&amp;#39;s own DSL:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="n"&gt;invoke&lt;/span&gt; &lt;span class="ss"&gt;:production&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; We could have simply added a shell alias such as &lt;code&gt;alias cap=&amp;#39;cap production&amp;#39;&lt;/code&gt;, but that has plenty of its own downsides.&lt;/p&gt;
+
+&lt;p&gt;This may have some unintended consequences if you actually do use multiple stages, but if you only ever use the production stage, it should work fine.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>jQuery Mobile Rails 1.4.0 Released</title>
     <link rel="alternate" href="/blog/2013/12/30/jquery-mobile-rails-1-4-0-released/"/>

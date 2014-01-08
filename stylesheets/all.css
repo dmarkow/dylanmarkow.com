@@ -8012,23 +8012,23 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
   content: "\f18b"; }
 
 /*code,*/
-/* line 11, /Users/dylan/dev/newblog/source/stylesheets/all.css.scss */
+/* line 11, /Users/dylan/dev/dylanmarkow.com/source/stylesheets/all.css.scss */
 code, pre.highlight {
   font-family: "Source Code Pro", "Inconsolata", monospace;
   /*background-color: whitesmoke;*/ }
 
-/* line 17, /Users/dylan/dev/newblog/source/stylesheets/all.css.scss */
+/* line 17, /Users/dylan/dev/dylanmarkow.com/source/stylesheets/all.css.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold; }
 
-/* line 20, /Users/dylan/dev/newblog/source/stylesheets/all.css.scss */
+/* line 20, /Users/dylan/dev/dylanmarkow.com/source/stylesheets/all.css.scss */
 pre.highlight {
   margin: 18px 0; }
 
-/* line 24, /Users/dylan/dev/newblog/source/stylesheets/all.css.scss */
+/* line 24, /Users/dylan/dev/dylanmarkow.com/source/stylesheets/all.css.scss */
 body {
   padding-top: 30px; }
 
-/* line 29, /Users/dylan/dev/newblog/source/stylesheets/all.css.scss */
+/* line 29, /Users/dylan/dev/dylanmarkow.com/source/stylesheets/all.css.scss */
 div#main h2:first-child {
   margin-top: 0px; }
