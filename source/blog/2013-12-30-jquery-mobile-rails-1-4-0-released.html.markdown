@@ -1,6 +1,6 @@
 ---
 title: jQuery Mobile Rails 1.4.0 Released
-date: 2013-12-30 09-26 21:15 UTC
+date: 2013-12-30 21:15 UTC
 tags: rails
 ---
 
