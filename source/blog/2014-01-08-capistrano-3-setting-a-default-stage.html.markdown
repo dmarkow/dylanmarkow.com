@@ -63,10 +63,10 @@ stages.each do |stage|
 end
 ```
 
-Now that we know this, we need to approach it a little differently. Rather than thinking _How do I set a default stage_,
-we should be asking _How do I make sure that my production stage's task is run every time_.
+Now that we know what the stage tasks do, we need to approach it a little differently. Instead of thinking _How do I set a default stage_,
+we now ask _How do I make sure that my production stage's task is run every time_.
 
-Because this is just Rake, we already know the answer: simply invoke the `production` task by default.
+Because this is a Rake application, we already know the answer: invoke the `production` task by default.
 Normally you would do this from your `Rakefile`, but since we're using Capistrano, you'll add this to the end of your `Capfile` instead:
 
 ```ruby
@@ -81,4 +81,5 @@ invoke :production
 
 __Note:__ We could have simply added a shell alias such as `alias cap='cap production'`, but that has plenty of its own downsides.
 
-This may have some unintended consequences if you actually do use multiple stages, but if you only ever use the production stage, it should work fine.
+Also, this will have some unintended consequences if you actually do use multiple stages. In my simple testing, trying to specify a
+different stage made the `cap` command hang, , but if you only ever use the production stage, it should work fine.
