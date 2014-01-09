@@ -85,8 +85,7 @@ Normally you would do this from your &lt;code&gt;Rakefile&lt;/code&gt;, but sinc
 &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; We could have simply added a shell alias such as &lt;code&gt;alias cap=&amp;#39;cap production&amp;#39;&lt;/code&gt;, but that has plenty of its own downsides.&lt;/p&gt;
 
-&lt;p&gt;Also, this will have some unintended consequences if you actually do use multiple stages. In my simple testing, trying to specify a
-different stage made the &lt;code&gt;cap&lt;/code&gt; command hang, , but if you only ever use the production stage, it should work fine.&lt;/p&gt;
+&lt;p&gt;Also, this may have some unintended consequences if you actually do use multiple stages, but if you only ever use the production stage, it should work fine.&lt;/p&gt;
 </content>
   </entry>
   <entry>
