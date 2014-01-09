@@ -81,5 +81,4 @@ invoke :production
 
 __Note:__ We could have simply added a shell alias such as `alias cap='cap production'`, but that has plenty of its own downsides.
 
-Also, this will have some unintended consequences if you actually do use multiple stages. In my simple testing, trying to specify a
-different stage made the `cap` command hang, , but if you only ever use the production stage, it should work fine.
+Also, this may have some unintended consequences if you actually do use multiple stages, but if you only ever use the production stage, it should work fine.
