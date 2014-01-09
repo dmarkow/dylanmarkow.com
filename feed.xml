@@ -73,10 +73,10 @@ For each stage (the list of stages is created from the files in the &lt;code&gt;
   &lt;span class="k"&gt;end&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
-&lt;p&gt;Now that we know this, we need to approach it a little differently. Rather than thinking &lt;em&gt;How do I set a default stage&lt;/em&gt;,
-we should be asking &lt;em&gt;How do I make sure that my production stage&amp;#39;s task is run every time&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Now that we know what the stage tasks do, we need to approach it a little differently. Instead of thinking &lt;em&gt;How do I set a default stage&lt;/em&gt;,
+we now ask &lt;em&gt;How do I make sure that my production stage&amp;#39;s task is run every time&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;Because this is just Rake, we already know the answer: simply invoke the &lt;code&gt;production&lt;/code&gt; task by default.
+&lt;p&gt;Because this is a Rake application, we already know the answer: invoke the &lt;code&gt;production&lt;/code&gt; task by default.
 Normally you would do this from your &lt;code&gt;Rakefile&lt;/code&gt;, but since we&amp;#39;re using Capistrano, you&amp;#39;ll add this to the end of your &lt;code&gt;Capfile&lt;/code&gt; instead:&lt;/p&gt;
 &lt;pre class="highlight ruby"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="no"&gt;Rake&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Task&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:production&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="nf"&gt;.invoke&lt;/span&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
@@ -85,7 +85,8 @@ Normally you would do this from your &lt;code&gt;Rakefile&lt;/code&gt;, but sinc
 &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; We could have simply added a shell alias such as &lt;code&gt;alias cap=&amp;#39;cap production&amp;#39;&lt;/code&gt;, but that has plenty of its own downsides.&lt;/p&gt;
 
-&lt;p&gt;This may have some unintended consequences if you actually do use multiple stages, but if you only ever use the production stage, it should work fine.&lt;/p&gt;
+&lt;p&gt;Also, this will have some unintended consequences if you actually do use multiple stages. In my simple testing, trying to specify a
+different stage made the &lt;code&gt;cap&lt;/code&gt; command hang, , but if you only ever use the production stage, it should work fine.&lt;/p&gt;
 </content>
   </entry>
   <entry>

@@ -89,10 +89,10 @@ For each stage (the list of stages is created from the files in the <code>config
   <span class="k">end</span>
 <span class="k">end</span>
 </td></tr></tbody></table></pre>
-<p>Now that we know this, we need to approach it a little differently. Rather than thinking <em>How do I set a default stage</em>,
-we should be asking <em>How do I make sure that my production stage&#39;s task is run every time</em>.</p>
+<p>Now that we know what the stage tasks do, we need to approach it a little differently. Instead of thinking <em>How do I set a default stage</em>,
+we now ask <em>How do I make sure that my production stage&#39;s task is run every time</em>.</p>
 
-<p>Because this is just Rake, we already know the answer: simply invoke the <code>production</code> task by default.
+<p>Because this is a Rake application, we already know the answer: invoke the <code>production</code> task by default.
 Normally you would do this from your <code>Rakefile</code>, but since we&#39;re using Capistrano, you&#39;ll add this to the end of your <code>Capfile</code> instead:</p>
 <pre class="highlight ruby"><table><tbody><tr><td class="gutter gl"><div class="lineno">1</div></td><td class="code"><span class="no">Rake</span><span class="o">::</span><span class="no">Task</span><span class="o">[</span><span class="ss">:production</span><span class="o">]</span><span class="nf">.invoke</span>
 </td></tr></tbody></table></pre>
@@ -101,7 +101,8 @@ Normally you would do this from your <code>Rakefile</code>, but since we&#39;re 
 </td></tr></tbody></table></pre>
 <p><strong>Note:</strong> We could have simply added a shell alias such as <code>alias cap=&#39;cap production&#39;</code>, but that has plenty of its own downsides.</p>
 
-<p>This may have some unintended consequences if you actually do use multiple stages, but if you only ever use the production stage, it should work fine.</p>
+<p>Also, this will have some unintended consequences if you actually do use multiple stages. In my simple testing, trying to specify a
+different stage made the <code>cap</code> command hang, , but if you only ever use the production stage, it should work fine.</p>
 
   </article>
   <hr>
