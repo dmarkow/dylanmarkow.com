@@ -26,8 +26,38 @@
         <div id="main" role="main">
           
   <h2>
+    <a href="/blog/2014/03/27/ember-date-picker-with-ember-data-and-pikaday/">Ember Date Picker with Ember-Data and Pikaday</a>
+    <span class="text-muted">
+      Mar 27
+    </span>
+    
+  </h2>
+  <!-- use article.summary(250) if you have Nokogiri available to show just
+       the first 250 characters -->
+
+  <p><a href="http://spin.atomicobject.com/2013/10/29/ember-js-date-picker/">Atomic Spin has a great article</a> on setting up Pikaday with an <code>Ember.TextField</code> view.
+However, since I&#39;m using Ember Data with some <code>date</code> attributes, I needed to actually bind
+a <code>Date</code> object rather than a formatted date string.</p>
+
+<div>
+  <a class="jsbin-embed" href="http://emberjs.jsbin.com/gumex/1/embed?html,js,output">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>
+</div>
+
+<hr>
+
+<p>There were a couple things I had to add for this to work:</p>
+
+<ul>
+<li>I&#39;m using the <a href="http://momentjs.com/">moment.js</a> library to allow <code>MM/DD/YYYY</code> formatting.</li>
+<li>Rather than binding the attribute directly to the <code>value</code>, I&#39;m using a <code>date</code> binding instead. This gives me the chance to parse a formatted date before setting the attribute.</li>
+<li>I added the <code>init</code> function so the text field shows the model&#39;s formatted date when the form is loaded.</li>
+<li>The <code>updateDate</code> function, which observes <code>value</code>, directly sets the <code>date</code> to the parsed value.</li>
+</ul>
+
+  <hr>
+  <h2>
     <a href="/blog/2014/01/08/capistrano-3-setting-a-default-stage/">Capistrano 3: Setting a Default Stage</a>
-    <span>
+    <span class="text-muted">
       Jan  8
     </span>
     
@@ -107,7 +137,7 @@ Normally you would do this from your <code>Rakefile</code>, but since we&#39;re 
   <hr>
   <h2>
     <a href="/blog/2013/12/30/jquery-mobile-rails-1-4-0-released/">jQuery Mobile Rails 1.4.0 Released</a>
-    <span>
+    <span class="text-muted">
       Dec 30
     </span>
     
@@ -124,7 +154,7 @@ Normally you would do this from your <code>Rakefile</code>, but since we&#39;re 
   <hr>
   <h2>
     <a href="/blog/2013/09/26/jquery-mobile-rails-1-4-0-beta-1-released/">jQuery Mobile Rails 1.4.0.beta.1 Released</a>
-    <span>
+    <span class="text-muted">
       Sep 26
     </span>
     
@@ -142,7 +172,7 @@ and am excited to announce the first <a href="https://rubygems.org/gems/jquery_m
   <hr>
   <h2>
     <a href="/blog/2013/09/12/speeding-up-rails-4-in-development-mode/">Speeding up Rails 4 in Development Mode</a>
-    <span>
+    <span class="text-muted">
       Sep 12
     </span>
     
@@ -179,7 +209,7 @@ the change, 450ms. Development mode feels <strong>much</strong> snappier now!</p
   <hr>
   <h2>
     <a href="/blog/2012/05/06/load-order-with-rubymotion/">Load Order with RubyMotion</a>
-    <span>
+    <span class="text-muted">
       May  6
     </span>
     
@@ -254,6 +284,8 @@ terminate called throwing an exception
           </div>
           <div class="list-group">
             
+              <a class="list-group-item" href="/blog/2014/03/27/ember-date-picker-with-ember-data-and-pikaday/">Ember Date Picker with Ember-Data and Pikaday</a>
+            
               <a class="list-group-item" href="/blog/2014/01/08/capistrano-3-setting-a-default-stage/">Capistrano 3: Setting a Default Stage</a>
             
               <a class="list-group-item" href="/blog/2013/12/30/jquery-mobile-rails-1-4-0-released/">jQuery Mobile Rails 1.4.0 Released</a>
@@ -276,12 +308,16 @@ terminate called throwing an exception
           
           <li><a href="/blog/tags/capistrano/">capistrano</a> (1)</a></li>
           
+          <li><a href="/blog/tags/ember/">ember</a> (1)</a></li>
+          
+          <li><a href="/blog/tags/ember-data/">ember-data</a> (1)</a></li>
+          
         </ol>
  -->
 <!--         <h2>By Year</h2>
         <ol>
           
-          <li><a href="/blog/2014/">2014</a> (1)</a></li>
+          <li><a href="/blog/2014/">2014</a> (2)</a></li>
           
           <li><a href="/blog/2013/">2013</a> (3)</a></li>
           
