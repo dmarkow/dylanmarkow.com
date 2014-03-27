@@ -7,7 +7,7 @@
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
   <!-- Use title if it's in the page YAML frontmatter -->
-  <title>Ember Date Picker with Ember-Data and Pikaday</title>
+  <title>Ember Date Picker with Ember Data and Pikaday</title>
   <link href="//fonts.googleapis.com/css?family=Roboto:400,700" media="screen" rel="stylesheet" type="text/css" />
   <link href="/stylesheets/all.css" media="screen" rel="stylesheet" type="text/css" />
 <link href="/stylesheets/syntax.css" media="screen" rel="stylesheet" type="text/css" />
@@ -17,7 +17,14 @@
 <body class="blog blog_2014 blog_2014_03 blog_2014_03_27 blog_2014_03_27_ember-date-picker-with-ember-data-and-pikaday blog_2014_03_27_ember-date-picker-with-ember-data-and-pikaday_index">
   <div class="container">
     <header class="">
-      <h1><a href="/">Dylan Markow</a></h1>
+      <h1>
+        <div class="pull-right">
+          <a href="http://github.com/dmarkow"><i class="icon-github icon-fixed-width"></i></a>
+          <a href="http://twitter.com/dmarkow"><i class="icon-twitter icon-fixed-width"></i></a>
+          <a href="http://stackoverflow.com/users/424300/dylan-markow"><i class="icon-stackexchange icon-fixed-width"></i></a>
+          <a href="http://www.linkedin.com/in/dylanmarkow"><i class="icon-linkedin icon-fixed-width"></i></a>
+</div>
+        <a href="/">Dylan Markow</a></h1>
       <hr>
     </header>
 
@@ -25,18 +32,19 @@
       <div class="col-md-9">
         <div id="main" role="main">
             <h2>
-    <a href="/blog/2014/03/27/ember-date-picker-with-ember-data-and-pikaday/">Ember Date Picker with Ember-Data and Pikaday</a>
-    <span>
-      Mar 27
-    </span>
-    
+    <a href="/blog/2014/03/27/ember-date-picker-with-ember-data-and-pikaday/">Ember Date Picker with Ember Data and Pikaday</a>
+
+<small class="text-muted">
+  Mar 27
+  
+</small>
+
 
   </h2>
-
+<br>
   <article>
     <p><a href="http://spin.atomicobject.com/2013/10/29/ember-js-date-picker/">Atomic Spin has a great article</a> on setting up Pikaday with an <code>Ember.TextField</code> view.
-However, since I&#39;m using Ember Data with some <code>date</code> attributes, I needed to actually bind
-a <code>Date</code> object rather than a formatted date string.</p>
+However, since I&#39;m using Ember Data with some <code>date</code> attributes, I needed to actually use a <code>Date</code> object rather than a formatted date string.</p>
 
 <div>
   <a class="jsbin-embed" href="http://emberjs.jsbin.com/gumex/1/embed?html,js,output">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>
@@ -74,7 +82,7 @@ a <code>Date</code> object rather than a formatted date string.</p>
 
       <aside class="col-md-3">
 
-        <div class="panel panel-success">
+<!--         <div class="panel panel-success">
           <div class="panel-heading">
             <h3 class="panel-title">Find me on...</h3>
           </div>
@@ -85,15 +93,15 @@ a <code>Date</code> object rather than a formatted date string.</p>
             <a class="list-group-item" href="http://stackoverflow.com/users/424300/dylan-markow"><i class="icon-stackexchange icon-large icon-fixed-width"></i> Stack Overflow</a>
             <a class="list-group-item" href="http://www.linkedin.com/in/dylanmarkow"><i class="icon-linkedin icon-large icon-fixed-width"></i> LinkedIn</a>
           </div>
-        </div>
+        </div> -->
 
-        <div class="panel panel-info">
+        <div class="panel panel-success">
           <div class="panel-heading">
             <h2 class="panel-title">Recent Articles</h2>
           </div>
           <div class="list-group">
             
-              <a class="list-group-item" href="/blog/2014/03/27/ember-date-picker-with-ember-data-and-pikaday/">Ember Date Picker with Ember-Data and Pikaday</a>
+              <a class="list-group-item" href="/blog/2014/03/27/ember-date-picker-with-ember-data-and-pikaday/">Ember Date Picker with Ember Data and Pikaday</a>
             
               <a class="list-group-item" href="/blog/2014/01/08/capistrano-3-setting-a-default-stage/">Capistrano 3: Setting a Default Stage</a>
             

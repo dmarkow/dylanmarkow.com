@@ -17,7 +17,14 @@
 <body class="blog blog_2012 blog_2012_05 blog_2012_05_06 blog_2012_05_06_load-order-with-rubymotion blog_2012_05_06_load-order-with-rubymotion_index">
   <div class="container">
     <header class="">
-      <h1><a href="/">Dylan Markow</a></h1>
+      <h1>
+        <div class="pull-right">
+          <a href="http://github.com/dmarkow"><i class="icon-github icon-fixed-width"></i></a>
+          <a href="http://twitter.com/dmarkow"><i class="icon-twitter icon-fixed-width"></i></a>
+          <a href="http://stackoverflow.com/users/424300/dylan-markow"><i class="icon-stackexchange icon-fixed-width"></i></a>
+          <a href="http://www.linkedin.com/in/dylanmarkow"><i class="icon-linkedin icon-fixed-width"></i></a>
+</div>
+        <a href="/">Dylan Markow</a></h1>
       <hr>
     </header>
 
@@ -26,15 +33,17 @@
         <div id="main" role="main">
             <h2>
     <a href="/blog/2012/05/06/load-order-with-rubymotion/">Load Order with RubyMotion</a>
-    <span>
-      May  6
-    </span>
-    
-      <span class='text-muted'>2012</span>
-    
+
+<small class="text-muted">
+  May  6
+  
+    2012
+  
+</small>
+
 
   </h2>
-
+<br>
   <article>
     <p>Because of the way <a href="http://www.rubymotion.com">RubyMotion</a> compiles your application, you may run into dependency issues between your ruby files. By default, RubyMotion uses a simple <code>Dir.glob</code> command to load your files:</p>
 <pre class="highlight ruby"><table><tbody><tr><td class="gutter gl"><div class="lineno">1</div></td><td class="code"><span class="no">Dir</span><span class="nf">.glob</span><span class="p">(</span><span class="no">File</span><span class="nf">.join</span><span class="p">(</span><span class="n">app</span><span class="nf">.project_dir</span><span class="p">,</span> <span class="s1">&#39;app/**/*.rb&#39;</span><span class="p">))</span>
@@ -95,7 +104,7 @@ terminate called throwing an exception
 
       <aside class="col-md-3">
 
-        <div class="panel panel-success">
+<!--         <div class="panel panel-success">
           <div class="panel-heading">
             <h3 class="panel-title">Find me on...</h3>
           </div>
@@ -106,15 +115,15 @@ terminate called throwing an exception
             <a class="list-group-item" href="http://stackoverflow.com/users/424300/dylan-markow"><i class="icon-stackexchange icon-large icon-fixed-width"></i> Stack Overflow</a>
             <a class="list-group-item" href="http://www.linkedin.com/in/dylanmarkow"><i class="icon-linkedin icon-large icon-fixed-width"></i> LinkedIn</a>
           </div>
-        </div>
+        </div> -->
 
-        <div class="panel panel-info">
+        <div class="panel panel-success">
           <div class="panel-heading">
             <h2 class="panel-title">Recent Articles</h2>
           </div>
           <div class="list-group">
             
-              <a class="list-group-item" href="/blog/2014/03/27/ember-date-picker-with-ember-data-and-pikaday/">Ember Date Picker with Ember-Data and Pikaday</a>
+              <a class="list-group-item" href="/blog/2014/03/27/ember-date-picker-with-ember-data-and-pikaday/">Ember Date Picker with Ember Data and Pikaday</a>
             
               <a class="list-group-item" href="/blog/2014/01/08/capistrano-3-setting-a-default-stage/">Capistrano 3: Setting a Default Stage</a>
             

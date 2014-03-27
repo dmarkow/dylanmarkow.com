@@ -17,7 +17,14 @@
 <body class="index">
   <div class="container">
     <header class="">
-      <h1><a href="/">Dylan Markow</a></h1>
+      <h1>
+        <div class="pull-right">
+          <a href="http://github.com/dmarkow"><i class="icon-github icon-fixed-width"></i></a>
+          <a href="http://twitter.com/dmarkow"><i class="icon-twitter icon-fixed-width"></i></a>
+          <a href="http://stackoverflow.com/users/424300/dylan-markow"><i class="icon-stackexchange icon-fixed-width"></i></a>
+          <a href="http://www.linkedin.com/in/dylanmarkow"><i class="icon-linkedin icon-fixed-width"></i></a>
+</div>
+        <a href="/">Dylan Markow</a></h1>
       <hr>
     </header>
 
@@ -26,18 +33,17 @@
         <div id="main" role="main">
           
   <h2>
-    <a href="/blog/2014/03/27/ember-date-picker-with-ember-data-and-pikaday/">Ember Date Picker with Ember-Data and Pikaday</a>
-    <span class="text-muted">
+    <a href="/blog/2014/03/27/ember-date-picker-with-ember-data-and-pikaday/">Ember Date Picker with Ember Data and Pikaday</a>
+    <small class="text-muted">
       Mar 27
-    </span>
-    
+      
+    </small>
   </h2>
   <!-- use article.summary(250) if you have Nokogiri available to show just
        the first 250 characters -->
-
+<br>
   <p><a href="http://spin.atomicobject.com/2013/10/29/ember-js-date-picker/">Atomic Spin has a great article</a> on setting up Pikaday with an <code>Ember.TextField</code> view.
-However, since I&#39;m using Ember Data with some <code>date</code> attributes, I needed to actually bind
-a <code>Date</code> object rather than a formatted date string.</p>
+However, since I&#39;m using Ember Data with some <code>date</code> attributes, I needed to actually use a <code>Date</code> object rather than a formatted date string.</p>
 
 <div>
   <a class="jsbin-embed" href="http://emberjs.jsbin.com/gumex/1/embed?html,js,output">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>
@@ -54,17 +60,19 @@ a <code>Date</code> object rather than a formatted date string.</p>
 <li>The <code>updateDate</code> function, which observes <code>value</code>, directly sets the <code>date</code> to the parsed value.</li>
 </ul>
 
+  <br>
   <hr>
+  <br>
   <h2>
     <a href="/blog/2014/01/08/capistrano-3-setting-a-default-stage/">Capistrano 3: Setting a Default Stage</a>
-    <span class="text-muted">
+    <small class="text-muted">
       Jan  8
-    </span>
-    
+      
+    </small>
   </h2>
   <!-- use article.summary(250) if you have Nokogiri available to show just
        the first 250 characters -->
-
+<br>
   <p>In Capistrano v2, multi-stage support wasn&#39;t built in. If you didn&#39;t need stages, you could just happily
 use <code>cap deploy</code> without any problem.</p>
 
@@ -134,54 +142,60 @@ Normally you would do this from your <code>Rakefile</code>, but since we&#39;re 
 
 <p>Also, this may have some unintended consequences if you actually do use multiple stages, but if you only ever use the production stage, it should work fine.</p>
 
+  <br>
   <hr>
+  <br>
   <h2>
     <a href="/blog/2013/12/30/jquery-mobile-rails-1-4-0-released/">jQuery Mobile Rails 1.4.0 Released</a>
-    <span class="text-muted">
+    <small class="text-muted">
       Dec 30
-    </span>
-    
-      <span class='text-muted'>2013</span>
-    
+      
+        2013
+      
+    </small>
   </h2>
   <!-- use article.summary(250) if you have Nokogiri available to show just
        the first 250 characters -->
-
+<br>
   <p>jQuery Mobile 1.4.0 has been released, so the <a href="https://rubygems.org/gems/jquery_mobile_rails/">jquery_mobile_rails gem</a> has been updated as well!</p>
 
 <p>You can read about the changes on the <a href="http://blog.jquerymobile.com/2013/12/23/jquery-mobile-1-4-0-released/">jQuery Mobile blog</a>.</p>
 
+  <br>
   <hr>
+  <br>
   <h2>
     <a href="/blog/2013/09/26/jquery-mobile-rails-1-4-0-beta-1-released/">jQuery Mobile Rails 1.4.0.beta.1 Released</a>
-    <span class="text-muted">
+    <small class="text-muted">
       Sep 26
-    </span>
-    
-      <span class='text-muted'>2013</span>
-    
+      
+        2013
+      
+    </small>
   </h2>
   <!-- use article.summary(250) if you have Nokogiri available to show just
        the first 250 characters -->
-
+<br>
   <p>I&#39;ve been helping out with maintenance of the <a href="https://github.com/tscolari/jquery-mobile-rails">jquery_mobile_rails gem</a>
 and am excited to announce the first <a href="https://rubygems.org/gems/jquery_mobile_rails/versions/1.4.0.beta.1">beta for the upcoming 1.4.0 release</a>.</p>
 
 <p>You can read about the changes on the <a href="http://jquerymobile.com/blog/2013/09/24/announcing-jquery-mobile-1-4-beta/">jQuery Mobile blog</a>.</p>
 
+  <br>
   <hr>
+  <br>
   <h2>
     <a href="/blog/2013/09/12/speeding-up-rails-4-in-development-mode/">Speeding up Rails 4 in Development Mode</a>
-    <span class="text-muted">
+    <small class="text-muted">
       Sep 12
-    </span>
-    
-      <span class='text-muted'>2013</span>
-    
+      
+        2013
+      
+    </small>
   </h2>
   <!-- use article.summary(250) if you have Nokogiri available to show just
        the first 250 characters -->
-
+<br>
   <p>As I&#39;ve been adding more and more CSS/JS files to my Rails app, I&#39;ve been
 noticing a huge slowdown in page load times. Most of the assets are tiny
 controller-specific files, but the size of those files is irrelevant.</p>
@@ -206,19 +220,21 @@ CSS/JS is concatenated into single files.</p>
 <p>Before the change, Chrome took around 1.8 seconds to fully load a page. After
 the change, 450ms. Development mode feels <strong>much</strong> snappier now!</p>
 
+  <br>
   <hr>
+  <br>
   <h2>
     <a href="/blog/2012/05/06/load-order-with-rubymotion/">Load Order with RubyMotion</a>
-    <span class="text-muted">
+    <small class="text-muted">
       May  6
-    </span>
-    
-      <span class='text-muted'>2012</span>
-    
+      
+        2012
+      
+    </small>
   </h2>
   <!-- use article.summary(250) if you have Nokogiri available to show just
        the first 250 characters -->
-
+<br>
   <p>Because of the way <a href="http://www.rubymotion.com">RubyMotion</a> compiles your application, you may run into dependency issues between your ruby files. By default, RubyMotion uses a simple <code>Dir.glob</code> command to load your files:</p>
 <pre class="highlight ruby"><table><tbody><tr><td class="gutter gl"><div class="lineno">1</div></td><td class="code"><span class="no">Dir</span><span class="nf">.glob</span><span class="p">(</span><span class="no">File</span><span class="nf">.join</span><span class="p">(</span><span class="n">app</span><span class="nf">.project_dir</span><span class="p">,</span> <span class="s1">&#39;app/**/*.rb&#39;</span><span class="p">))</span>
 </td></tr></tbody></table></pre>
@@ -257,7 +273,9 @@ terminate called throwing an exception
 <pre class="highlight ruby"><table><tbody><tr><td class="gutter gl"><div class="lineno">1</div><div class="lineno">2</div></td><td class="code"><span class="n">app</span><span class="nf">.files</span> <span class="o">=</span> <span class="no">Dir</span><span class="nf">.glob</span><span class="p">(</span><span class="no">File</span><span class="nf">.join</span><span class="p">(</span><span class="n">app</span><span class="nf">.project_dir</span><span class="p">,</span> <span class="s1">&#39;app/lib/**/*.rb&#39;</span><span class="p">))</span> <span class="o">|</span>
             <span class="no">Dir</span><span class="nf">.glob</span><span class="p">(</span><span class="no">File</span><span class="nf">.join</span><span class="p">(</span><span class="n">app</span><span class="nf">.project_dir</span><span class="p">,</span> <span class="s1">&#39;app/**/*.rb&#39;</span><span class="p">))</span>
 </td></tr></tbody></table></pre>
+  <br>
   <hr>
+  <br>
 
 
         </div>
@@ -265,7 +283,7 @@ terminate called throwing an exception
 
       <aside class="col-md-3">
 
-        <div class="panel panel-success">
+<!--         <div class="panel panel-success">
           <div class="panel-heading">
             <h3 class="panel-title">Find me on...</h3>
           </div>
@@ -276,15 +294,15 @@ terminate called throwing an exception
             <a class="list-group-item" href="http://stackoverflow.com/users/424300/dylan-markow"><i class="icon-stackexchange icon-large icon-fixed-width"></i> Stack Overflow</a>
             <a class="list-group-item" href="http://www.linkedin.com/in/dylanmarkow"><i class="icon-linkedin icon-large icon-fixed-width"></i> LinkedIn</a>
           </div>
-        </div>
+        </div> -->
 
-        <div class="panel panel-info">
+        <div class="panel panel-success">
           <div class="panel-heading">
             <h2 class="panel-title">Recent Articles</h2>
           </div>
           <div class="list-group">
             
-              <a class="list-group-item" href="/blog/2014/03/27/ember-date-picker-with-ember-data-and-pikaday/">Ember Date Picker with Ember-Data and Pikaday</a>
+              <a class="list-group-item" href="/blog/2014/03/27/ember-date-picker-with-ember-data-and-pikaday/">Ember Date Picker with Ember Data and Pikaday</a>
             
               <a class="list-group-item" href="/blog/2014/01/08/capistrano-3-setting-a-default-stage/">Capistrano 3: Setting a Default Stage</a>
             

@@ -10,7 +10,7 @@
     <name>Blog Author</name>
   </author>
   <entry>
-    <title>Ember Date Picker with Ember-Data and Pikaday</title>
+    <title>Ember Date Picker with Ember Data and Pikaday</title>
     <link rel="alternate" href="/blog/2014/03/27/ember-date-picker-with-ember-data-and-pikaday/"/>
     <id>/blog/2014/03/27/ember-date-picker-with-ember-data-and-pikaday/</id>
     <published>2014-03-27T01:55:00Z</published>
@@ -19,8 +19,7 @@
       <name>Article Author</name>
     </author>
     <content type="html">&lt;p&gt;&lt;a href="http://spin.atomicobject.com/2013/10/29/ember-js-date-picker/"&gt;Atomic Spin has a great article&lt;/a&gt; on setting up Pikaday with an &lt;code&gt;Ember.TextField&lt;/code&gt; view.
-However, since I&amp;#39;m using Ember Data with some &lt;code&gt;date&lt;/code&gt; attributes, I needed to actually bind
-a &lt;code&gt;Date&lt;/code&gt; object rather than a formatted date string.&lt;/p&gt;
+However, since I&amp;#39;m using Ember Data with some &lt;code&gt;date&lt;/code&gt; attributes, I needed to actually use a &lt;code&gt;Date&lt;/code&gt; object rather than a formatted date string.&lt;/p&gt;
 
 &lt;div&gt;
   &lt;a class="jsbin-embed" href="http://emberjs.jsbin.com/gumex/1/embed?html,js,output"&gt;Ember Starter Kit&lt;/a&gt;&lt;script src="http://static.jsbin.com/js/embed.js"&gt;&lt;/script&gt;
