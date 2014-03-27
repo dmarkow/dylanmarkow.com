@@ -8,7 +8,7 @@
 
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>Ember Date Picker with Ember Data and Pikaday</title>
-  <link href="//fonts.googleapis.com/css?family=Roboto:400,700" media="screen" rel="stylesheet" type="text/css" />
+  <link href="//fonts.googleapis.com/css?family=Lato:400,700" media="screen" rel="stylesheet" type="text/css" />
   <link href="/stylesheets/all.css" media="screen" rel="stylesheet" type="text/css" />
 <link href="/stylesheets/syntax.css" media="screen" rel="stylesheet" type="text/css" />
   <script src="/javascripts/all.js" type="text/javascript"></script>
@@ -43,8 +43,8 @@
   </h2>
 <br>
   <article>
-    <p><a href="http://spin.atomicobject.com/2013/10/29/ember-js-date-picker/">Atomic Spin has a great article</a> on setting up Pikaday with an <code>Ember.TextField</code> view.
-However, since I&#39;m using Ember Data with some <code>date</code> attributes, I needed to actually use a <code>Date</code> object rather than a formatted date string.</p>
+    <p><a href="http://spin.atomicobject.com/2013/10/29/ember-js-date-picker/">Atomic Spin has a great article</a> on setting up <a href="https://github.com/dbushell/Pikaday">Pikaday</a> with an <code>Ember.TextField</code> view.
+However, since I&#39;m using Ember Data with some <code>date</code> attributes, I needed to actually use a <code>Date</code> object rather than a formatted date string. Here&#39;s what I came up with after adding a few things to their example:</p>
 
 <div>
   <a class="jsbin-embed" href="http://emberjs.jsbin.com/gumex/1/embed?html,js,output">Ember Starter Kit</a><script src="http://static.jsbin.com/js/embed.js"></script>
@@ -57,7 +57,7 @@ However, since I&#39;m using Ember Data with some <code>date</code> attributes, 
 <ul>
 <li>I&#39;m using the <a href="http://momentjs.com/">moment.js</a> library to allow <code>MM/DD/YYYY</code> formatting.</li>
 <li>Rather than binding the attribute directly to the <code>value</code>, I&#39;m using a <code>date</code> binding instead. This gives me the chance to parse a formatted date before setting the attribute.</li>
-<li>I added the <code>init</code> function so the text field shows the model&#39;s formatted date when the form is loaded.</li>
+<li>I added the <code>init</code> function so I can format the existing date when the form loads.</li>
 <li>The <code>updateDate</code> function, which observes <code>value</code>, directly sets the <code>date</code> to the parsed value.</li>
 </ul>
 

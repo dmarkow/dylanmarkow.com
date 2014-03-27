@@ -18,8 +18,8 @@
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;p&gt;&lt;a href="http://spin.atomicobject.com/2013/10/29/ember-js-date-picker/"&gt;Atomic Spin has a great article&lt;/a&gt; on setting up Pikaday with an &lt;code&gt;Ember.TextField&lt;/code&gt; view.
-However, since I&amp;#39;m using Ember Data with some &lt;code&gt;date&lt;/code&gt; attributes, I needed to actually use a &lt;code&gt;Date&lt;/code&gt; object rather than a formatted date string.&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;a href="http://spin.atomicobject.com/2013/10/29/ember-js-date-picker/"&gt;Atomic Spin has a great article&lt;/a&gt; on setting up &lt;a href="https://github.com/dbushell/Pikaday"&gt;Pikaday&lt;/a&gt; with an &lt;code&gt;Ember.TextField&lt;/code&gt; view.
+However, since I&amp;#39;m using Ember Data with some &lt;code&gt;date&lt;/code&gt; attributes, I needed to actually use a &lt;code&gt;Date&lt;/code&gt; object rather than a formatted date string. Here&amp;#39;s what I came up with after adding a few things to their example:&lt;/p&gt;
 
 &lt;div&gt;
   &lt;a class="jsbin-embed" href="http://emberjs.jsbin.com/gumex/1/embed?html,js,output"&gt;Ember Starter Kit&lt;/a&gt;&lt;script src="http://static.jsbin.com/js/embed.js"&gt;&lt;/script&gt;
@@ -32,7 +32,7 @@ However, since I&amp;#39;m using Ember Data with some &lt;code&gt;date&lt;/code&
 &lt;ul&gt;
 &lt;li&gt;I&amp;#39;m using the &lt;a href="http://momentjs.com/"&gt;moment.js&lt;/a&gt; library to allow &lt;code&gt;MM/DD/YYYY&lt;/code&gt; formatting.&lt;/li&gt;
 &lt;li&gt;Rather than binding the attribute directly to the &lt;code&gt;value&lt;/code&gt;, I&amp;#39;m using a &lt;code&gt;date&lt;/code&gt; binding instead. This gives me the chance to parse a formatted date before setting the attribute.&lt;/li&gt;
-&lt;li&gt;I added the &lt;code&gt;init&lt;/code&gt; function so the text field shows the model&amp;#39;s formatted date when the form is loaded.&lt;/li&gt;
+&lt;li&gt;I added the &lt;code&gt;init&lt;/code&gt; function so I can format the existing date when the form loads.&lt;/li&gt;
 &lt;li&gt;The &lt;code&gt;updateDate&lt;/code&gt; function, which observes &lt;code&gt;value&lt;/code&gt;, directly sets the &lt;code&gt;date&lt;/code&gt; to the parsed value.&lt;/li&gt;
 &lt;/ul&gt;
 </content>
