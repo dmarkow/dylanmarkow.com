@@ -5,7 +5,7 @@ gem "middleman-blog", "~> 3.2.0"
 
 # For feed.xml.builder
 gem "builder", "~> 3.0.0"
-gem 'bootstrap-sass', github: "thomas-mcdonald/bootstrap-sass", branch: "3", require: false
+gem 'bootstrap-sass',"~> 3.1.1.0"
 gem "redcarpet"
 gem "middleman-syntax"
 gem "nokogiri"

@@ -1,15 +1,17 @@
 <% wrap_layout :layout do %>
   <h2>
     <%= link_to current_page.title, current_page.url %>
-    <span>
-      <%= current_page.date.strftime('%b %e') %>
-    </span>
-    <% if current_page.date.year < Date.today.year %>
-      <span class='text-muted'><%= current_page.date.year %></span>
-    <% end %>
+
+<small class="text-muted">
+  <%= current_page.date.strftime('%b %e') %>
+  <% if current_page.date.year < Date.today.year %>
+    <%= current_page.date.year %>
+  <% end %>
+</small>
+
 
   </h2>
-
+<br>
   <article>
     <%= yield %>
   </article>
